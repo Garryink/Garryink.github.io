@@ -166,6 +166,15 @@
             2024/9/4
         </span>
         
+        <span class="category">
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E7%A2%8E%E7%89%87/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                技术碎片
+            </a>
+        </span>
+        
         
         <span class="tags">
             <span class="icon">
@@ -175,8 +184,15 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%8A%80%E6%9C%AF%E7%A2%8E%E7%89%87/" style="color: #ffa2c4">
-                    技术碎片
+                <a href="/tags/hexo/" style="color: #00a596">
+                    hexo
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%BC%96%E8%BE%91%E5%8D%9A%E5%AE%A2/" style="color: #00bcd4">
+                    编辑博客
                 </a>
             </span>
             
@@ -185,11 +201,15 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="本文记录一些个人使用hexo编辑博客的指令以及小寄巧，不定时更新。"><a href="#本文记录一些个人使用hexo编辑博客的指令以及小寄巧，不定时更新。" class="headerlink" title="本文记录一些个人使用hexo编辑博客的指令以及小寄巧，不定时更新。"></a>本文记录一些个人使用hexo编辑博客的指令以及小寄巧，不定时更新。</h1><hr>
-<h2 id="指令表"><a href="#指令表" class="headerlink" title="指令表"></a>指令表</h2><pre><code class="bash">$ hexo new &quot;article&quot;  
-$ hexo g  
-$ hexo d  
-$ hexo s  
+        <p>本文记录一些个人使用hexo编辑博客的指令以及小寄巧，不定时更新。</p>
+<h1 id="指令表"><a href="#指令表" class="headerlink" title="指令表"></a>指令表</h1><pre><code class="bash">$ hexo new &quot;article&quot;  # 创建文章
+$ hexo clean           # 清除缓存 or hexo cl
+$ hexo g               # 生成静态文件 or hexo generate
+$ hexo d               # 部署到服务器 or hexo deploy
+$ hexo s               # 本地预览 or hexo server
+$ hexo s -p 5000       # 本地预览指定端口
+$ hexo d -g --deploy   # 生成并部署
+$ hexo d -g --deploy --branch gh-pages # 生成并部署到指定分支
 </code></pre>
 <h3 id="持续更新"><a href="#持续更新" class="headerlink" title="持续更新"></a>持续更新</h3>
     </div>
