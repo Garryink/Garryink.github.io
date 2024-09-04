@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title>Archives | ChaneRim</title>
     <meta name="author" content="ChaneRim" />
-    <meta name="description" content="陈陈陈的个人博客" />
+    <meta name="description" content="陈陈陈 个人博客" />
     <meta name="keywords" content="" />
     <meta
         name="viewport"
@@ -39,6 +39,8 @@
 <script src="/js/lib/preview.js"></script>
 
 
+
+<script src="/js/lib/search.js"></script>
 
 
 
@@ -152,6 +154,8 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             
 <div id="archives">
+    
+    <input id="search-bar" class="input" placeholder="搜索" v-model="rawSearch" />
     
     <div id="timeline-wrap" ref="timeline">
         
