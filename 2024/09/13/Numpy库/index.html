@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>hexo使用例 | ChaneRim</title>
+    <title>Numpy库 | ChaneRim</title>
     <meta name="author" content="ChaneRim" />
     <meta name="description" content="陈陈陈 个人博客" />
     <meta name="keywords" content="" />
@@ -156,14 +156,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>hexo使用例</h1>
+        <h1>Numpy库</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/9/4
+            2024/9/13
         </span>
         
         <span class="category">
@@ -184,15 +184,22 @@
             
             <span class="tag">
                 
-                <a href="/tags/hexo/" style="color: #ffa2c4">
-                    hexo
+                <a href="/tags/python/" style="color: #03a9f4">
+                    python
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%BC%96%E8%BE%91%E5%8D%9A%E5%AE%A2/" style="color: #ff7d73">
-                    编辑博客
+                <a href="/tags/Numpy/" style="color: #ff7d73">
+                    Numpy
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%8A%80%E5%B7%A7/" style="color: #03a9f4">
+                    技巧
                 </a>
             </span>
             
@@ -201,17 +208,76 @@
     </div>
     
     <div class="content" v-pre>
-        <p>本文记录一些个人使用hexo编辑博客的指令以及小寄巧，不定时更新。</p>
-<h1 id="指令表"><a href="#指令表" class="headerlink" title="指令表"></a>指令表</h1><pre><code class="bash">$ hexo new &quot;article&quot;  # 创建文章
-$ hexo clean           # 清除缓存 or hexo cl
-$ hexo g               # 生成静态文件 or hexo generate
-$ hexo d               # 部署到服务器 or hexo deploy
-$ hexo s               # 本地预览 or hexo server
-$ hexo s -p 5000       # 本地预览指定端口
-$ hexo d -g --deploy   # 生成并部署
-$ hexo d -g --deploy --branch gh-pages # 生成并部署到指定分支
+        <p>本文记录一些Numpy的基础用法以及一些小寄巧，不定时更新。</p>
+<h1 id="内容更新：大数据分析方法课1、2-Numpy"><a href="#内容更新：大数据分析方法课1、2-Numpy" class="headerlink" title="内容更新：大数据分析方法课1、2 Numpy"></a>内容更新：大数据分析方法课1、2 Numpy</h1><h2 id="课一-介绍Numpy库与python数组的区别以及代码效率差距"><a href="#课一-介绍Numpy库与python数组的区别以及代码效率差距" class="headerlink" title="课一 介绍Numpy库与python数组的区别以及代码效率差距"></a>课一 介绍Numpy库与python数组的区别以及代码效率差距</h2><pre><code class="python">a1 = [1, 2, 3]
+a2 = np
+a2
+#  sin log cos exp log reshape transpose concatenate numpy列表效率高于python数组
+
+list_data = list(range(10000000))
+numpy_data = np.arange(10000000)
+
+start_time = time.time()
+result_list = [x*2 for x in list_data]
+end_time = time.time()
+list_time = end_time - start_time
+
+start_time = time.time()
+reslut_numpy = numpy_data * 2
+end_time= time.time()
+numpy_time = end_time - start_time
+print(f&quot;list_time is &#123;list_time&#125;&quot;)
+print(f&quot;numpy time is &#123;numpy_time&#125;&quot;)
 </code></pre>
-<h3 id="持续更新"><a href="#持续更新" class="headerlink" title="持续更新"></a>持续更新</h3>
+<h2 id="课二-介绍Numpy库基本用法"><a href="#课二-介绍Numpy库基本用法" class="headerlink" title="课二 介绍Numpy库基本用法"></a>课二 介绍Numpy库基本用法</h2><pre><code class="python">import numpy as np
+import time
+
+matrix_sample = np.random.randint(2, 10, (3, 4))
+# matrix_sample = np.array([[1,1,2,1],[5,8,2,5],[8,7,7,5]])
+matrix_sample
+
+matrix_sample[2, 0]  # 读取3行1列元素
+matrix_sample[:, 1]  # 读取第2列所有元素
+matrix_sample[2, :]  # 读取第3行所有元素
+matrix_sample[[0, 2]]  # 读取第1、3行的元素
+matrix_sample[[1, 0]]  # 读取第2、1行的元素（顺序读取，根据位置需求读取）
+matrix_sample[[0, 2], [1, 3]]  # 读取这两个位置的元素
+matrix_sample[0, 1][:, [1, 2]]  # 读取12行23列的元素
+
+# 将矩阵化为标准型
+matrix_temp1 = matrix_sample.copy()
+matrix_temp1[1] = matrix_sample[1] - matrix_sample[0] * 5
+matrix_temp1[2] = matrix_sample[2] - matrix_sample[0] * 8
+matrix_temp2 = matrix_temp1[[0, 2, 1]]
+matrix_temp2[2] = matrix_temp2[2] + matrix_temp2[1] * 3
+matrix_temp2[0] = matrix_temp2[0] + matrix_temp2[1]
+# 未完
+
+# 拼接数组
+a = np.array([[1, 2], [3, 4]])
+b = np.array([[5, 6]])
+ab_cctn_by_row = np.concatenate((a, b), axis=0)  # 按行拼接
+ab_cctn_by_col = np.concatenate((a.T, b.T), axis=1)  # 按列拼接 注意这里需要转置矩阵！
+
+array_a = np.array([[1, 2, 3]])
+array_b = np.array([[4, 5, 6]])
+concatenated_array = np.concatenate((array_a, array_b), axis=0)
+# 这里注意，数组维数是二维，可以直接按行拼接。如果是一维则报错
+concatenated_array = np.concatenate((array_a, array_b), axis=None)
+# 不指定拼接方向，则扁平化为一维数组 .ndim 为 1
+
+# 求矩阵的逆矩阵
+c = np.random.randint(0, 9, (3, 3))
+# c = np.array([[5, 1, 7],  [6, 1, 0], [7, 4, 5]])
+np.linalg.det(c)  # 计算行列式
+d = np.concatenate((c, np.eye(3, 3)), axis=1)  # 拼接
+d[0] = d[0] - d[1]
+d[1] = d[1] + 6 * d[0]
+d[2] = d[2] + 7 * d[0]
+d[2] = d[2] - 4 * d[1]
+# 未完
+</code></pre>
+
     </div>
     
     

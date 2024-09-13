@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>hexo使用例 | ChaneRim</title>
+    <title>markdown语言的使用及一些技巧 | ChaneRim</title>
     <meta name="author" content="ChaneRim" />
     <meta name="description" content="陈陈陈 个人博客" />
     <meta name="keywords" content="" />
@@ -156,14 +156,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>hexo使用例</h1>
+        <h1>markdown语言的使用及一些技巧</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/9/4
+            2024/9/11
         </span>
         
         <span class="category">
@@ -184,15 +184,22 @@
             
             <span class="tag">
                 
-                <a href="/tags/hexo/" style="color: #ffa2c4">
-                    hexo
+                <a href="/tags/%E6%8A%80%E5%B7%A7/" style="color: #ff7d73">
+                    技巧
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%BC%96%E8%BE%91%E5%8D%9A%E5%AE%A2/" style="color: #ff7d73">
-                    编辑博客
+                <a href="/tags/markdown/" style="color: #00a596">
+                    markdown
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/html/" style="color: #03a9f4">
+                    html
                 </a>
             </span>
             
@@ -201,17 +208,28 @@
     </div>
     
     <div class="content" v-pre>
-        <p>本文记录一些个人使用hexo编辑博客的指令以及小寄巧，不定时更新。</p>
-<h1 id="指令表"><a href="#指令表" class="headerlink" title="指令表"></a>指令表</h1><pre><code class="bash">$ hexo new &quot;article&quot;  # 创建文章
-$ hexo clean           # 清除缓存 or hexo cl
-$ hexo g               # 生成静态文件 or hexo generate
-$ hexo d               # 部署到服务器 or hexo deploy
-$ hexo s               # 本地预览 or hexo server
-$ hexo s -p 5000       # 本地预览指定端口
-$ hexo d -g --deploy   # 生成并部署
-$ hexo d -g --deploy --branch gh-pages # 生成并部署到指定分支
+        <p>本文记录一些markdown的基础用法以及一些小寄巧，不定时更新。</p>
+<h1 id="头部声明"><a href="#头部声明" class="headerlink" title="头部声明"></a>头部声明</h1><p>头部需要声明一些当前文档的参数，以当前主题为例</p>
+<pre><code class="markdown">---
+titile:    当前文章的标题
+date:   创建的日期
+categories:    分类
+tags:    标签
+excerpt:    摘要内容，不写默认显示全文
+---
 </code></pre>
-<h3 id="持续更新"><a href="#持续更新" class="headerlink" title="持续更新"></a>持续更新</h3>
+<h1 id="通辽语法（bushi）"><a href="#通辽语法（bushi）" class="headerlink" title="通辽语法（bushi）"></a>通辽语法（bushi）</h1><p>一些基本用法:</p>
+<pre><code class="markdown"># 一级标题
+## 二级标题
+### 三级标题
+在#之后都要空一格
+
+代码形式高亮
+```[语言] 放置代码 ```
+
+
+</code></pre>
+
     </div>
     
     
