@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Matplotlib | Garryink</title>
+    <meta name="author" content="Garryink" />
+    <meta name="description" content="陈陈陈 个人博客" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>GARRYINK</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;主页</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;关于</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;归档</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;标签</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;GARRYINK</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">主页</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">关于</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">归档</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">标签</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Matplotlib</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/11/7
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E7%A2%8E%E7%89%87/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                技术碎片
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/python/" style="color: #00a596">
+                    python
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%8A%80%E5%B7%A7/" style="color: #00bcd4">
+                    技巧
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/matplotlib/" style="color: #ff7d73">
+                    matplotlib
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="一、库内常用模块以及一个简单图表的创建"><a href="#一、库内常用模块以及一个简单图表的创建" class="headerlink" title="一、库内常用模块以及一个简单图表的创建"></a>一、库内常用模块以及一个简单图表的创建</h1><h2 id="1．常用模块（个人）"><a href="#1．常用模块（个人）" class="headerlink" title="1．常用模块（个人）"></a>1．常用模块（个人）</h2><h3 id="（1）Matplotlib-pyplot-as-plt"><a href="#（1）Matplotlib-pyplot-as-plt" class="headerlink" title="（1）Matplotlib.pyplot as plt"></a>（1）Matplotlib.pyplot as plt</h3><p>Matplotlib.pyplot是Matplotlib的一个子库，提供了类似于MATLAB的绘图接口，可以方便地绘制各种图表。常用的方法有：</p>
+<ul>
+<li>plt.plot()：绘制折线图</li>
+<li>plt.scatter()：绘制散点图</li>
+<li>plt.bar()：绘制柱状图</li>
+<li>plt.barh()：绘制水平柱状图</li>
+<li>plt.boxplot()：绘制箱线图</li>
+<li>plt.hist()：绘制直方图</li>
+<li>plt.pie()：绘制饼图</li>
+<li>plt.imshow()：绘制图像</li>
+<li>plt.savefig()：保存图表</li>
+<li>plt.show()：显示图表</li>
+<li>plt.close()：关闭图表</li>
+<li>plt.rcParams：设置运行时参数</li>
+</ul>
+<pre><code class="python">Plt.rcparams该方法提供自定义运行时参数设置(runtime config parameters)，能够自定义图表的外观基础属性。常用的如下
+plt.rcParams[&quot;font.sans-serif&quot;] = &#39;SimHei&#39;  # 解决中文乱码问题
+plt.rcParams[&#39;axes.unicode_minus&#39;] = False  # 解决负号无法显示的问题
+plt.rc(&#39;axes&#39;, axisbelow=True)  # 让网格线在坐标轴的下面
+</code></pre>
+<p>更多参数设置可以在官方文档查看 <a target="_blank" rel="noopener" href="https://matplotlib.net/stable/tutorials/introductory/customizing.html">官方rcparams文档</a></p>
+<p>创建图表</p>
+<pre><code class="python">Fig = Plt.figure()
+Fig,ax = Plt.subplots()
+</code></pre>
+<p>这两个主要区别在于前者默认只创建一个图形框，后者初始时可以设置子图个数，可以直接调整子图布局</p>
+<h3 id="（2）Matplotlib-colormaps-或者别名cm-与-Matplotlib-colors"><a href="#（2）Matplotlib-colormaps-或者别名cm-与-Matplotlib-colors" class="headerlink" title="（2）Matplotlib.colormaps 或者别名cm 与 Matplotlib.colors"></a>（2）Matplotlib.colormaps 或者别名cm 与 Matplotlib.colors</h3><p>Matplotlib.colormaps是Matplotlib的一个子库，提供了各种颜色映射（colormap）的预定义，可以用于绘制图表时设置颜色。常用的方法有：</p>
+<ul>
+<li>cm.get_cmap()：获取一个颜色映射对象</li>
+<li>cm.ScalarMappable()：创建一个颜色映射的可视化对象</li>
+<li>cm.ScalarMappable.set_array()：设置颜色映射的可视化对象的数组</li>
+<li>cm.ScalarMappable.to_rgba()：将数组转换为颜色值</li>
+<li>cm.ScalarMappable.set_clim()：设置颜色映射的可视化对象的颜色范围</li>
+</ul>
+<h4 id="常用预定义"><a href="#常用预定义" class="headerlink" title="常用预定义"></a>常用预定义</h4><pre><code class="python">plot_color_gradients(&#39;Sequential&#39;,
+                     [&#39;Greys&#39;, &#39;Purples&#39;, &#39;Blues&#39;, &#39;Greens&#39;, &#39;Oranges&#39;, &#39;Reds&#39;,
+                      &#39;YlOrBr&#39;, &#39;YlOrRd&#39;, &#39;OrRd&#39;, &#39;PuRd&#39;, &#39;RdPu&#39;, &#39;BuPu&#39;,
+                      &#39;GnBu&#39;, &#39;PuBu&#39;, &#39;YlGnBu&#39;, &#39;PuBuGn&#39;, &#39;BuGn&#39;, &#39;YlGn&#39;])
+# 官网 
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.net/stable/tutorials/colors/colormaps.html#sphx-glr-tutorials-colors-colormaps-py">官方colormap文档</a><br><img src="/images/colormap.png" alt="图片" title="colormap"></p>
+<p>Matplotlib.colors模块提供了各种颜色相关的工具和函数，可以用于处理颜色值、颜色映射等。常用的方法有：</p>
+<ul>
+<li>colors.to_rgb()：将颜色值转换为RGB格式</li>
+<li>colors.to_rgba()：将颜色值转换为RGBA格式</li>
+<li>colors.hex2color()：将十六进制颜色值转换为RGB格式</li>
+<li>colors.rgb2hex()：将RGB颜色值转换为十六进制颜色值</li>
+<li>colors.cnames：一个包含常见颜色名称和对应的RGB值的字典</li>
+</ul>
+<p>自己创建颜色映射示例</p>
+<pre><code class="python">n_colors = 100
+cmap_colors = [&#39;#00A08A&#39;, &#39;white&#39;, &#39;#FF0000&#39;]
+cmap_colors = [colors.to_rgb(color) for color in cmap_colors]
+cmap = colors.LinearSegmentedColormap.from_list(&#39;my_cmap_name&#39;, cmap_colors)  # 创建一个线性分段颜色映射
+color = [colors.rgb2hex(x) for x in colormaps.get_cmap(cmap)(np.linspace(0, 1, n_colors))]
+</code></pre>
+<h2 id="2．简单图表创建"><a href="#2．简单图表创建" class="headerlink" title="2．简单图表创建"></a>2．简单图表创建</h2><h1 id="二、其它模块"><a href="#二、其它模块" class="headerlink" title="二、其它模块"></a>二、其它模块</h1><h1 id="三、一些图的画法"><a href="#三、一些图的画法" class="headerlink" title="三、一些图的画法"></a>三、一些图的画法</h1><h1 id="四、代码"><a href="#四、代码" class="headerlink" title="四、代码"></a>四、代码</h1><h2 id="1-饼图（圆环图）"><a href="#1-饼图（圆环图）" class="headerlink" title="1. 饼图（圆环图）"></a>1. 饼图（圆环图）</h2><pre><code class="python">import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import cm, colors
+
+df = pd.DataFrame(dict(labels=[&#39;LVS&#39;, &#39;SJM&#39;, &#39;MCE&#39;, &#39;Galaxy&#39;, &#39;MGM&#39;, &#39;Wynn&#39;],
+                       sizes=[24.20, 75.90, 12.50, 12.30, 8.10, 12.10]))
+df = df.sort_values(by=&#39;sizes&#39;, ascending=False)
+df = df.reset_index()  # 按降序排列后，添加一列index（初始索引）
+
+cmap = cm.get_cmap(&#39;Reds_r&#39;, 6)  # 从预定义的&quot;Reds_r&quot;中获取颜色映射（r代表反转,深红到红的渐变），并设置为6个层级
+color = [colors.rgb2hex(cmap(i)[:3]) for i in range(cmap.N)]
+# hex 十六进制 rgb to hex rgb转化为十六进制。 cmap(i)[:3] 前三个元素为RGB的值,取出六个颜色的十六进制值并保存为如下格式
+# color=[&quot;#ffffff&quot;, &quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot; ]
+&#39;&#39;&#39;
+该值固定为[&#39;#67000d&#39;, &#39;#bc141a&#39;, &#39;#f14432&#39;, &#39;#fc8a6a&#39;, &#39;#fdcab5&#39;, &#39;#fff5f0&#39;]
+疑问？为什么？分级梯度取中间值吗？
+&#39;&#39;&#39;
+fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect=&quot;equal&quot;))
+# subplots用于创建图形对象以及子图对象，并返回，这里fig和ax分别为图形对象和子图对象。
+# figsize=(6, 3) 设置图形大小，单位为英寸，6ic宽3ic高，subplot_kw=dict(aspect=&quot;equal&quot;) 设置图形的横纵比为1:1
+wedges, texts = ax.pie(df[&#39;sizes&#39;].values,
+                       startangle=90, shadow=True, counterclock=False, colors=color,
+                       wedgeprops=dict(linewidth=0.5, edgecolor=&#39;k&#39;, width=0.3))
+# ax.pie() 绘制饼图，参数为：数据，起始角度，阴影，(方向)逆时针，颜色，(边框线宽，边框颜色，圆环宽度) ← 改为圆环的代码
+
+bbox_props = dict(boxstyle=&quot;square,pad=0.3&quot;, fc=&quot;w&quot;, ec=&quot;k&quot;, lw=0.72)
+# bbox_props bounding box properties，边框属性，boxstyle=&quot;square,pad=0.3&quot; 边框样式，fc=&quot;w&quot; 填充颜色，ec=&quot;k&quot; 边框颜色，lw=0.72 边框线宽
+kw = dict(xycoords=&#39;data&#39;, textcoords=&#39;data&#39;, arrowprops=dict(arrowstyle=&quot;-&quot;),
+          bbox=bbox_props, zorder=0, va=&quot;center&quot;)
+# xycoords=&#39;data&#39; xy坐标为数据坐标，textcoords=&#39;data&#39; 文本坐标为数据坐标，arrowprops=dict(arrowstyle=&quot;-&quot;)
+# 箭头样式，bbox=bbox_props 边框属性，zorder=0 层级，va=&quot;center&quot; 垂直对齐方式
+
+for i, p in enumerate(wedges):
+    print(i)
+    ang = (p.theta2 - p.theta1) / 2. + p.theta1  # 计算扇形中心角度，为箭头起始位置提供依据
+    y = np.sin(np.deg2rad(ang))  # np.deg2rad() 将角度转换为弧度 degrees to radians
+    x = np.cos(np.deg2rad(ang))
+    horizontalalignment = &#123;-1: &quot;right&quot;, 1: &quot;left&quot;&#125;[int(np.sign(x))]
+    # 水平对齐方式 np.sign() 返回x的符号 左边大括号判断正负对应对齐方式 在下面annotate有引用
+    connectionstyle = &quot;angle,angleA=0,angleB=&#123;&#125;&quot;.format(ang)
+    # 箭头样式 angle,angleA=0,angleB=&#123;&#125;.format(ang) 箭头角度
+    kw[&quot;arrowprops&quot;].update(&#123;&quot;connectionstyle&quot;: connectionstyle&#125;)  # 更新箭头属性
+    ax.annotate(df[&#39;labels&#39;][i], xy=(x, y), xytext=(1.2 * x, 1.2 * y),  # xytext=(1.35*np.sign(x), 1.4*y),
+                horizontalalignment=horizontalalignment,
+                arrowprops=dict(arrowstyle=&#39;-&#39;))
+    # annotate() 添加注释 xy=(x, y) 注释位置 xytext=(1.2 * x, 1.2 * y) 注释文本位置 1.0为原位置
+
+plt.show()
+</code></pre>
+<h2 id="2、马赛克图"><a href="#2、马赛克图" class="headerlink" title="2、马赛克图"></a>2、马赛克图</h2><pre><code class="python">from matplotlib import pyplot as plt
+import pandas as pd
+
+plt.rcParams[&quot;font.sans-serif&quot;] = &#39;SimHei&#39;  # 解决中文乱码问题
+plt.rcParams[&#39;axes.unicode_minus&#39;] = False  # 解决负号无法显示的问题
+plt.rc(&#39;axes&#39;, axisbelow=True)  # 让网格线在坐标轴的下面
+
+df = pd.DataFrame(dict(segment = [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;,&quot;D&quot;],
+                      Alpha = [2400, 1200, 600, 250],
+                      Beta =  [1000, 900,  600, 250],
+                      Gamma = [400,  600,  400, 250],
+                      Delta = [200,	 300,  400, 250])).set_index(&#39;segment&#39;)
+dfT = df.T.reset_index().rename(columns=&#123;&#39;index&#39;:&#39;levels&#39;&#125;).set_index(&#39;levels&#39;)
+dfT_segment_sum = dfT.apply(lambda x:x.sum(),axis=0) * 100
+histogram_width = dfT_segment_sum/dfT_segment_sum.sum() * 100
+histogram_x_pos = (histogram_width.cumsum()-histogram_width)
+histogram_height = dfT / dfT_segment_sum *10000
+bottom_y = (dfT.cumsum(axis=0)-dfT)/dfT_segment_sum *10000
+x_tick_pos = (histogram_width.cumsum()-histogram_width/2)
+color = [&#39;#db5f57&#39;,&#39;#91db57&#39;,&#39;#a157db&#39;,&#39;#57d3db&#39;]
+
+fig = plt.figure(figsize=(5, 5), dpi=100)
+
+for i in range(dfT.shape[0]):
+    plt.bar(x=histogram_x_pos, width=histogram_width, height=histogram_height.iloc[i, :], bottom=bottom_y.iloc[i, :], align=&#39;edge&#39;, color=color[i], edgecolor=&#39;k&#39;)
+
+ax=plt.gca()
+ax.spines[&#39;top&#39;].set_color(&#39;none&#39;)
+ax.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+ax.spines[&#39;left&#39;].set_color(&#39;none&#39;)
+
+fontdict = &#123;&#39;family&#39;: &#39;sans-serif&#39;, &#39;style&#39;: &#39;normal&#39;, &#39;weight&#39;: &#39;normal&#39;, &#39;size&#39;: 12, &#39;color&#39;: &#39;k&#39;&#125;
+
+for i in range(dfT.shape[0]):
+    for j in range(dfT.shape[1]):
+        x = x_tick_pos.iloc[j]
+        y = bottom_y.iloc[i,j] + histogram_height.iloc[i,j]/2 - 2
+        s = dfT.iloc[i,j]
+        plt.text(x, y, s,ha=&#39;center&#39;, va=&#39;bottom&#39;, fontdict=fontdict)
+
+for i in range(dfT.shape[0]):
+    x = 110
+    y = bottom_y.iloc[i, -1] + histogram_height.iloc[i, -1] / 2 - 2
+    s = dfT.index[i]
+    plt.text(x, y, s, ha=&#39;center&#39;, va=&#39;bottom&#39;, fontdict=fontdict)
+
+for j in range(dfT.shape[1]):
+    x = x_tick_pos.iloc[j]
+    y = 101
+    s = df.index[j]
+    plt.text(x, y, s, ha=&#39;center&#39;, va=&#39;bottom&#39;, fontdict=fontdict)
+plt.show()
+</code></pre>
+<h2 id="3、瀑布图"><a href="#3、瀑布图" class="headerlink" title="3、瀑布图"></a>3、瀑布图</h2><pre><code class="python">import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib import cm,colors
+
+data = &#123;&#39;电影名称&#39;:[&#39;《红海行动》&#39;,&#39;《唐人街探案2》&#39;,&#39;《捉妖记2》&#39;,&#39;《熊出没变形记》&#39;,&#39;《西游记女儿国》&#39;,&#39;《祖宗十九代》&#39;],
+        &#39;票房数据&#39;:[1.29,3.4,5.45,0.76,1.63,0.17]&#125;
+df = pd.DataFrame(data)
+df[&#39;底部&#39;] = df[&#39;票房数据&#39;].cumsum(axis=0)-df[&#39;票房数据&#39;]
+new_row = pd.DataFrame(&#123;&#39;电影名称&#39;:[&#39;总票房&#39;],&#39;票房数据&#39;:df[&#39;票房数据&#39;].sum(),&#39;底部&#39;:0&#125;)
+df = pd.concat([df,new_row],ignore_index=True).round(2)
+cmap = cm.get_cmap(&#39;YlOrRd&#39;,df.shape[0])
+color = [colors.rgb2hex(cmap(i)[:3]) for i in range(cmap.N)]
+
+plt.figure(figsize=(8,4),dpi=100)
+plt.rcParams[&quot;font.sans-serif&quot;] = &#39;SimHei&#39;  # 解决中文乱码问题
+plt.rcParams[&#39;axes.unicode_minus&#39;] = False  # 解决负号无法显示的问题
+plt.rc(&#39;axes&#39;, axisbelow=True)  # 让网格线在坐标轴的下面
+plt.bar(x=df[&#39;电影名称&#39;],height=df[&#39;票房数据&#39;],width=0.8,bottom=df[&#39;底部&#39;],align=&#39;center&#39;,color=color)
+plt.xticks(fontsize=8)
+for i in range(df.shape[0]):
+        plt.text(df.iloc[i,0],df.iloc[i,2]+df.iloc[i,1],df.iloc[i,1],ha=&#39;center&#39;,va=&#39;bottom&#39;,fontsize=10)
+plt.show()
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 Garryink
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Garryink
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="ChaneRim/ChaneRim.github.io"
+    data-repo-id="R_kgDOMs1AEg"
+    data-category="Show and tell"
+    data-category-id="DIC_kwDOMs1AEs4CiM2m"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
