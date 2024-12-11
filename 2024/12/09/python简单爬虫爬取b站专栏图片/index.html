@@ -233,8 +233,6 @@ def download_picture(i, url, path, name=&#39;Image&#39;):
     if req.status_code != 200:
         print(&#39;Connection failed.\nID: &#39;, i, &#39;\nURL: &#39;, url)
     try:
-        if req.status_code != 200:
-            print(&#39;Connection failed&#39;)
         with open(f&quot;&#123;path&#125;/&#123;name&#125;_&#123;i&#125;.png&quot;, &#39;wb&#39;) as f:
             for chunk in req.iter_content(chunk_size=128):
                 f.write(chunk)
